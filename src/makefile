@@ -1,5 +1,5 @@
 # source files
-INPUT = main.js init.js
+INPUT = main.js util.js http.js init.js
 
 # output file name
 NAME = violet
