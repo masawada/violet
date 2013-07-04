@@ -1,0 +1,23 @@
+# source files
+INPUT = main.js init.js
+
+# output file name
+NAME = violet
+
+# output files
+COMBINE = ../test/js/$(NAME).js
+MINIFY = $(NAME).min.js
+
+COMPRESS = $(MINIFY)
+
+all : $(COMPRESS)
+
+$(COMBINE) : $(INPUT)
+	cat $^ > $@
+
+$(COMPRESS) : $(COMBINE)
+	java -jar /usr/bin/compiler.jar --js=$< --js_output_file=$@
+
+.PHONY: clean
+clean :
+	rm -f $(COMBINE) $(COMPRESS)
