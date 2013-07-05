@@ -7,6 +7,8 @@ Smoothy.test(function(t){
   });
 
   var callback = function(tweet){
+    if(tweet.delete){return false;}
+    if(!tweet.user){return false;}
     t.log(tweet.user.screen_name+': '+tweet.text);
   };
 
