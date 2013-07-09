@@ -111,6 +111,25 @@ Violet.Endpoints.post = [
   'oauth2/invalidate_token'
 ];
 
+Violet.Endpoints.to_replace_id_none = [
+  'statuses/show/:id'
+];
+
+Violet.Endpoints.to_replace_id = [
+  'statuses/retweets/:id',
+  'statuses/retweet/:id',
+  'statuses/destroy/:id'
+];
+
+Violet.Endpoints.to_replace_slug = [
+  'users/suggestions/:slug/members',
+  'users/suggestions/:slug'
+];
+
+Violet.Endpoints.to_replace_place_id = [
+  'geo/id/:place_id'
+];
+
 Violet.Endpoints.method = function(endpoint){
   var method = null;
   if(Violet.Endpoints.get.indexOf(endpoint) !== -1){

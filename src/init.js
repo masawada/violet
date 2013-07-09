@@ -25,7 +25,7 @@ proto.initialize = function(){
 
   this.streaming = Violet.Streaming(this.oauth);
 
-  this.request = Violet.Request.bind(this);
+  this.request = Violet.Request.request.bind(this);
 };
 
 }());

@@ -20,3 +20,13 @@ Violet.Util.mergeHash = function(){
   return result;
 };
 
+Violet.Util.hashLength = function(hash){
+  var k, i = 0;
+  for(k in hash){
+    if(hash.hasOwnProperty(k)){
+      i++;
+    }
+  }
+  return i;
+};
+
