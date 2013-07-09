@@ -52,7 +52,7 @@ Smoothy.test(function(t){
     t.assert('Violet.HTTPClient post').equal(res.responseText, 'hello');
   };
 
-  xhr.onerror = function(){
+  xhr.onerror = function(res){
     t.log('Violet.HTTPClient post error');
   };
 
