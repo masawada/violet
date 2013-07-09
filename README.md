@@ -27,7 +27,7 @@ load `sha1.js` and `violet.js` or `violet.min.js`.
     
     violet.oauth.obtainAccessToken(pin, token_callback, token_error);
 
-### Request API
+### Post Status
     var violet = Violet.init({
       consumer_key: 'consumer_key',
       consumer_secret: 'consumer_secret'
@@ -43,6 +43,40 @@ load `sha1.js` and `violet.js` or `violet.min.js`.
     };
     
     violet.request('statuses/update', post_data, callback, error);
+
+### Get home_timeline
+    var violet = Violet.init({
+      consumer_key: 'consumer_key',
+      consumer_secret: 'consumer_secret'
+      access_token_key: 'access_token_key',
+      access_token_secret: 'access_token_secret'
+    });
+    
+    var callback = function(xhr){};
+    var error = function(xhr){};
+    
+    var get_data = {
+      count: 5
+    };
+    
+    violet.request('statuses/home_timeline', get_data, callback, error);
+
+### Get a tweet
+    var violet = Violet.init({
+      consumer_key: 'consumer_key',
+      consumer_secret: 'consumer_secret'
+      access_token_key: 'access_token_key',
+      access_token_secret: 'access_token_secret'
+    });
+    
+    var callback = function(xhr){};
+    var error = function(xhr){};
+    
+    var get_data = {
+      id: 210462857140252672
+    };
+    
+    violet.request('statuses/show/:id', get_data, callback, error);
 
 ### Streaming API (GET user only)
     var violet = Violet.init({
