@@ -63,7 +63,7 @@ Violet.HTTPClient = function Class(args){
 var proto = Violet.HTTPClient.prototype;
 
 proto.start = function(){
-  var xhr = this.request, self = this;
+  var xhr = this.request;
   xhr.open(this.method, this.uri, true);
 
   // add headers
