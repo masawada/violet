@@ -36,13 +36,13 @@ Violet.Request.generateRequestInfo = function(endpoint, query){
   if(Violet.Endpoints.to_replace_id_none.indexOf(endpoint) !== -1){
     endpoint = endpoint.replace(/\/\:id$/, '');
   }else if(Violet.Endpoints.to_replace_id.indexOf(endpoint) !== -1){
-    endpoint.replace(':id', query.id);
+    endpoint = endpoint.replace(':id', query.id);
     delete query.id;
   }else if(Violet.Endpoints.to_replace_slug.indexOf(endpoint) !== -1){
-    endpoint.replace(':slug', query.slug);
+    endpoint = endpoint.replace(':slug', query.slug);
     delete query.slug;
   }else if(Violet.Endpoints.to_replace_place_id.indexOf(endpoint) !== -1){
-    endpoint.replace(':place_id', query.place_id);
+    endpoint = endpoint.replace(':place_id', query.place_id);
     delete query.place_id;
   }
 
