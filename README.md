@@ -31,7 +31,7 @@ load `sha1.js` and `violet.js` or `violet.min.js`.
     var violet = Violet.init({
       consumer_key: 'consumer_key',
       consumer_secret: 'consumer_secret'
-      access_token_key: 'access_token_key',
+      access_token: 'access_token',
       access_token_secret: 'access_token_secret'
     });
     
@@ -48,7 +48,7 @@ load `sha1.js` and `violet.js` or `violet.min.js`.
     var violet = Violet.init({
       consumer_key: 'consumer_key',
       consumer_secret: 'consumer_secret'
-      access_token_key: 'access_token_key',
+      access_token: 'access_token',
       access_token_secret: 'access_token_secret'
     });
     
@@ -65,7 +65,7 @@ load `sha1.js` and `violet.js` or `violet.min.js`.
     var violet = Violet.init({
       consumer_key: 'consumer_key',
       consumer_secret: 'consumer_secret'
-      access_token_key: 'access_token_key',
+      access_token: 'access_token',
       access_token_secret: 'access_token_secret'
     });
     
@@ -82,7 +82,7 @@ load `sha1.js` and `violet.js` or `violet.min.js`.
     var violet = Violet.init({
       consumer_key: 'consumer_key',
       consumer_secret: 'consumer_secret'
-      access_token_key: 'access_token_key',
+      access_token: 'access_token',
       access_token_secret: 'access_token_secret'
     });
     
@@ -92,7 +92,7 @@ load `sha1.js` and `violet.js` or `violet.min.js`.
     
     var error = function(xhr){};
     
-    violet.streaming.start(); // start streaming
+    violet.streaming.start(callback, error); // start streaming
     violet.streaming.stop(); // stop streaming
 
 ## License
