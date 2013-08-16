@@ -14,15 +14,16 @@ Violet.HTTPClient = function Class(args){
   this.onsuccess = function(){};
   this.onerror = function(){};
 
-  // initalize
-  this.request = new XMLHttpRequest({mozSystem: true});
+  this.request = null;
 };
 
 (function(){
 var proto = Violet.HTTPClient.prototype;
 
 proto.start = function(){
-  var xhr = this.request;
+  if(this.uri === ''){ return false; }
+
+  var xhr = new XMLHttpRequest({mozSystem: true});
   xhr.open(this.method, this.uri, true);
 
   // add headers
@@ -47,6 +48,7 @@ proto.start = function(){
   }.bind(this);
 
   xhr.send(this.postBody());
+  this.request = xhr;
 };
 
 proto.stop = function(){
