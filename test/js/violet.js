@@ -55,15 +55,16 @@ Violet.HTTPClient = function Class(args){
   this.onsuccess = function(){};
   this.onerror = function(){};
 
-  // initalize
-  this.request = new XMLHttpRequest({mozSystem: true});
+  this.request = null;
 };
 
 (function(){
 var proto = Violet.HTTPClient.prototype;
 
 proto.start = function(){
-  var xhr = this.request;
+  if(this.uri === ''){ return false; }
+
+  var xhr = new XMLHttpRequest({mozSystem: true});
   xhr.open(this.method, this.uri, true);
 
   // add headers
@@ -88,6 +89,7 @@ proto.start = function(){
   }.bind(this);
 
   xhr.send(this.postBody());
+  this.request = xhr;
 };
 
 proto.stop = function(){
@@ -460,13 +462,13 @@ Violet.Request.generateRequestInfo = function(endpoint, query){
   if(Violet.Endpoints.to_replace_id_none.indexOf(endpoint) !== -1){
     endpoint = endpoint.replace(/\/\:id$/, '');
   }else if(Violet.Endpoints.to_replace_id.indexOf(endpoint) !== -1){
-    endpoint.replace(':id', query.id);
+    endpoint = endpoint.replace(':id', query.id);
     delete query.id;
   }else if(Violet.Endpoints.to_replace_slug.indexOf(endpoint) !== -1){
-    endpoint.replace(':slug', query.slug);
+    endpoint = endpoint.replace(':slug', query.slug);
     delete query.slug;
   }else if(Violet.Endpoints.to_replace_place_id.indexOf(endpoint) !== -1){
-    endpoint.replace(':place_id', query.place_id);
+    endpoint = endpoint.replace(':place_id', query.place_id);
     delete query.place_id;
   }
 
