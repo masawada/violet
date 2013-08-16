@@ -1,4 +1,4 @@
-# Violet.js - A Twitter Library for FirefoxOS
+# Violet.js - A Twitter Library for Firefox OS
 
 ## Installation
 load `sha1.js` and `violet.js` or `violet.min.js`.
