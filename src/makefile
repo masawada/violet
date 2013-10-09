@@ -16,7 +16,7 @@ $(COMBINE) : $(INPUT)
 	cat $^ > $@
 
 $(COMPRESS) : $(COMBINE)
-	java -jar /usr/bin/compiler.jar --js=$< --js_output_file=$@
+	java -jar ../bin/compiler.jar --js=$< --js_output_file=$@
 
 .PHONY: clean
 clean :
