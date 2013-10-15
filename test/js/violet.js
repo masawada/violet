@@ -556,6 +556,16 @@ Violet.UserStream = function(oauth){
   return streaming;
 };
 
+// filterstream.js
+
+Violet.FilterStream = function(oauth){
+  var streaming = Violet.Streaming(oauth);
+  streaming.base_uri = 'https://stream.twitter.com/1.1/';
+  streaming.endpoint = 'statuses/filter';
+
+  return streaming;
+};
+
 // init.js
 
 Violet.init = function Class(args){
@@ -583,6 +593,8 @@ proto.initialize = function(){
 
   this.userstream = Violet.UserStream(this.oauth);
   this.streaming = this.userstream; // deprecated
+
+  this.filterstream = Violet.FilterStream(this.oauth);
 
   this.request = Violet.Request.request.bind(this);
 };
