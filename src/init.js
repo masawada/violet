@@ -23,7 +23,8 @@ proto.initialize = function(){
     access_token_secret: this.access_token_secret
   });
 
-  this.streaming = Violet.Streaming(this.oauth);
+  this.userstream = Violet.Streaming(this.oauth);
+  this.streaming = this.userstream; // deprecated
 
   this.request = Violet.Request.request.bind(this);
 };
