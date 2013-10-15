@@ -432,7 +432,7 @@ Violet.Request.request = function(endpoint, raw_query, callback, error){
   var info = Violet.Request.generateRequestInfo(endpoint, raw_query);
 
   var method = info.method;
-  var uri = info.uri;
+  var uri = this.base_uri + info.uri;
   var query = info.query;
   var get_data = info.get_data;
 
@@ -487,7 +487,7 @@ Violet.Request.generateRequestInfo = function(endpoint, query){
 
   return {
     method: method,
-    uri: 'https://api.twitter.com/1.1/' + endpoint + '.json',
+    uri: endpoint + '.json',
     query: query,
     get_data: get_data
   };
@@ -558,7 +558,8 @@ proto.initialize = function(){
     access_token_secret: this.access_token_secret
   });
 
-  this.streaming = Violet.Streaming(this.oauth);
+  this.userstream = Violet.Streaming(this.oauth);
+  this.streaming = this.userstream; // deprecated
 
   this.request = Violet.Request.request.bind(this);
 };
