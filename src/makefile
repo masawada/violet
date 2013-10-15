@@ -1,5 +1,5 @@
 # source files
-INPUT = main.js util.js http.js oauth.js endpoints.js request.js streaming.js init.js
+INPUT = main.js util.js http.js oauth.js endpoints.js request.js streaming.js userstream.js init.js
 
 # output file name
 NAME = violet
