@@ -16,6 +16,6 @@ Smoothy.test(function(t){
     t.log(xhr.status);
   };
 
-  violet.streaming.start(callback, error);
+  violet.userstream.start(callback, error);
 });
 
