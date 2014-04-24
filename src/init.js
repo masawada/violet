@@ -27,6 +27,7 @@ proto.initialize = function(){
   this.streaming = this.userstream; // deprecated
 
   this.filterstream = Violet.FilterStream(this.oauth);
+  this.publicstream = Violet.PublicStream(this.oauth);
 
   this.request = Violet.Request.request.bind(this);
 };
