@@ -1,6 +1,0 @@
-.DS_Store
-*.swp
-js/keys.js
-server/vendor
-server/.bundle
-server/Gemfile.lock
