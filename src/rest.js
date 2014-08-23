@@ -38,25 +38,31 @@
       xhr.setOAuthHeader(this.oauth.obtainOAuthParams());
       return xhr;
     },
+    promiseXHR: function(xhr) {
+      xhr.start();
+      var promise = new Promise();
+      xhr.addEventListener('load', function() {
+        // XXX generate tweet objects...
+        promise.resolve(new TweetObjects(this.result));
+      });
+      return promise;
+    },
     getMentionsTimeline: function(params) {
       var uri = this.getRequestURI(this.endpoints.mentionsTimeline);
       var xhr = this.getOAuthedRequest('GET', uri, params);
-      xhr.start();
-      return xhr;
+      return this.promiseXHR(xhr);
     },
     getUserTimeline: function(params) {
       var uri = this.getRequestURI(this.endpoints.userTimeline);
       var xhr = this.getOAuthedRequest('GET', uri, params);
-      xhr.start();
-      return xhr;
+      return this.promiseXHR(xhr);
     },
     getRetweets: function(statusId, params) {
       var uri = this.getRequestURI(this.endpoints.retweets, {
         id: statusId
       });
       var xhr = this.getOAuthedRequest('GET', uri, params);
-      xhr.start();
-      return xhr;
+      return this.promiseXHR(xhr);
     }
   };
 
