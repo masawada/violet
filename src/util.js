@@ -10,10 +10,10 @@
   };
 
   Util.mergeMaps = function () {
-    var dst = arguments[0];
+    var dst = {};
     var i, j, src, keys;
 
-    for (i = 1; i < arguments.length; i++) {
+    for (i = 0; i < arguments.length; i++) {
       src = arguments[i];
       keys = Object.keys(src);
 
