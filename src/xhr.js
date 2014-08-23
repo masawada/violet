@@ -58,11 +58,11 @@
       }
       this.authorizationHeader = 'OAuth ' + params.join(', ');
     },
-    addEventListener: function() {
-      this.xhr.addEventListener.apply(this.xhr, arguments);
+    addEventListener: function(event, callback) {
+      this.xhr.addEventListener.call(this.xhr, event, callback.bind(this.xhr));
     },
-    removeEventListener: function() {
-      this.xhr.removeEventListener.apply(this.xhr, arguments);
+    removeEventListener: function(event, callback) {
+      this.xhr.removeEventListener.call(this.xhr, event, callback.bind(this.xhr));
     }
   };
 
