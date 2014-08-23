@@ -1,0 +1,3 @@
+[submodule "src/vendor/crypto-js"]
+	path = src/vendor/crypto-js
+	url = git@github.com:evanvosberg/crypto-js.git
