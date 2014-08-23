@@ -17,28 +17,28 @@
       var path = util.resolveEndpoint(endpoint, params);
       return this.apiBase + path;
     },
-    getOAuthedXHR: function(method, uri, data) {
-      var xhr = new Violet.XHR();
-      xhr.setOAuthHeader(this.oauth.obtainOAuthParams());
-      return xhr;
-    },
-    sendGetRequest: function(uri, data) {
-      var xhr = this.getOAuthedXHR('get', uri, data);
-      xhr.get({
+    getOAuthedRequest: function(method, uri, data) {
+      var xhr = new Violet.XHR({
+        method: method,
         uri: uri,
         data: data
       });
+      xhr.setOAuthHeader(this.oauth.obtainOAuthParams());
       return xhr;
     },
     getMentionsTimeline: function(params) {
       var uri = this.getRequestUri(this.endpoints.mentionsTimeline);
-      return this.sendGetRequest(uri, params);
+      var xhr = this.getOAuthedRequest('GET', uri, params);
+      xhr.start();
+      return xhr;
     },
     getRetweets: function(statusId, params) {
       var uri = this.getRequestUri(this.endpoints.retweets, {
         id: statusId
       });
-      return this.sendGetRequest(uri, params);
+      var xhr = this.getOAuthedRequest('GET', uri, params);
+      xhr.start();
+      return xhr;
     }
   };
 
