@@ -2,10 +2,10 @@
 
 describe('oauth', function() {
   it('サーバに接続する', function(done) {
-    var xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest({mozSystem: true});
     xhr.open('GET', 'https://twitter.com');
     xhr.addEventListener('load', function() {
-      expect(this.status).to.equal(200);
+      chai.expect(this.status).to.equal(200);
       done();
     });
     xhr.addEventListener('error', function() {
