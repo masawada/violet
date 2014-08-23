@@ -2,4 +2,8 @@
 // violet.js
 //
 
-var Violet = {};
+var Violet = function () {
+};
+
+Violet.prototype = {
+};
