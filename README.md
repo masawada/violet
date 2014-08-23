@@ -3,7 +3,7 @@
 ## Setup
 
 ```sh
-$ git pull
+$ git clone git@github.com:masawada/violet.git
 $ git submodule init
 $ git submodule update
 $ npm install
