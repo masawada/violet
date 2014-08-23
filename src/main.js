@@ -1,0 +1,5 @@
+//
+// violet.js
+//
+
+var Violet = {};
