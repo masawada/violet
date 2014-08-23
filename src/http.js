@@ -1,16 +1,16 @@
 //
-// Violet.XHR
+// Violet.HTTPClient
 //
 
 (function(Violet) {
-  var XHR = function(args) {
+  var HTTPClient = function(args) {
     this.method = args.method || 'GET';
     this.formatURIAndData(args.uri || '', args.data || {});
     this.xhr = new XMLHTTPRequest({mozSystem: true});
     this.authorizationHeader = null;
   };
 
-  XHR.prototype = {
+  HTTPClient.prototype = {
     start: function() {
       if (this.uri === '') { return false; }
 
@@ -59,12 +59,12 @@
       this.authorizationHeader = 'OAuth ' + params.join(', ');
     },
     addEventListener: function(event, callback) {
-      this.xhr.addEventListener.call(this.xhr, event, callback.bind(this.xhr));
+      this.xhr.addEventListener.call(this.xhr, event, function() { callback(this.xhr); }.bind(this));
     },
     removeEventListener: function(event, callback) {
-      this.xhr.removeEventListener.call(this.xhr, event, callback.bind(this.xhr));
+      this.xhr.removeEventListener.call(this.xhr, event, function() { callback(this.xhr); }.bind(this));
     }
   };
 
-  Violet.XHR = XHR;
+  Violet.HTTPClient = HTTPClient;
 })(Violet);
