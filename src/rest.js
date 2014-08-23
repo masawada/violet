@@ -48,7 +48,7 @@
       xhr.start();
       var promise = new Promise();
       xhr.addEventListener('load', function() {
-        promise.resolve(callback(JSON.parse(xhr.reseponseText)));
+        promise.resolve(callback(JSON.parse(this.reseponseText)));
       });
       return promise;
     },

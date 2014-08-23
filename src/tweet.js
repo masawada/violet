@@ -1,9 +1,10 @@
 //
-// Violet.Rest
+// Violet.Tweet
 //
 
 (function(Violet) {
-  var Tweet = function() {
+  var Tweet = function(data) {
+    this.rawData = data;
   };
 
   Violet.Tweet = Tweet;
