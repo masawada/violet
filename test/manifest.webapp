@@ -1,0 +1,12 @@
+{
+  "name": "violet test",
+  "description": "test application",
+  "launch_path": "/index.html",
+  "icons": {
+    "128": "/images/icon128.png"
+  },
+  "type": "privileged",
+  "permissions": {
+    "systemXHR": {}
+  }
+}
