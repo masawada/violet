@@ -13,7 +13,17 @@
     apiBaseURI: 'https://api.twitter.com/1.1/',
     endpoints: {
       mentionsTimeline: 'statuses/mentions_timeline',
-      retweets: 'statuses/retweets/:id'
+      userTimeline: 'statuses/user_timeline',
+      homeTimeline: 'statuses/home_timeline',
+      retweetsOfMe: 'statuses/retweets_of_me',
+      retweets: 'statuses/retweets/:id',
+      showStatus: 'statuses/show/:id',
+      destroyStatus: 'statuses/destroy/:id',
+      updateStatus: 'statuses/update.json',
+      retweetStatus: 'statuses/retweet/:id.json',
+      updateStatusWithMedia: 'statuses/update_with_media',
+      oEmbed: 'statuses/oembed',
+      retweeterIds: 'statuses/retweeters/ids',
     },
     getRequestURI: function(endpoint, params) {
       var path = util.resolveEndpoint(endpoint, params);
@@ -30,6 +40,12 @@
     },
     getMentionsTimeline: function(params) {
       var uri = this.getRequestURI(this.endpoints.mentionsTimeline);
+      var xhr = this.getOAuthedRequest('GET', uri, params);
+      xhr.start();
+      return xhr;
+    },
+    getUserTimeline: function(params) {
+      var uri = this.getRequestURI(this.endpoints.userTimeline);
       var xhr = this.getOAuthedRequest('GET', uri, params);
       xhr.start();
       return xhr;
