@@ -25,20 +25,20 @@
       oEmbed: 'statuses/oembed',
       retweeterIds: 'statuses/retweeters/ids',
     },
-    getRequestURI: function(endpoint, params) {
+    _getRequestURI: function(endpoint, params) {
       var path = util.resolveEndpoint(endpoint, params);
       return this.apiBaseURI + path;
     },
-    getOAuthedRequest: function(method, uri, data) {
+    _getOAuthedRequest: function(method, uri, data) {
       var xhr = new Violet.XHR({
         method: method,
         uri: uri,
         data: data
       });
-      xhr.setOAuthHeader(this.oauth.obtainOAuthParams());
+      xhr.setOAuthHeader(this.oauth.obtainOAuthParams(xhr));
       return xhr;
     },
-    promiseXHR: function(xhr) {
+    _promiseXHR: function(xhr) {
       xhr.start();
       var promise = new Promise();
       xhr.addEventListener('load', function() {
@@ -48,72 +48,72 @@
       return promise;
     },
     getMentionsTimeline: function(params) {
-      var uri = this.getRequestURI(this.endpoints.mentionsTimeline);
-      var xhr = this.getOAuthedRequest('GET', uri, params);
-      return this.promiseXHR(xhr);
+      var uri = this._getRequestURI(this.endpoints.mentionsTimeline);
+      var xhr = this._getOAuthedRequest('GET', uri, params);
+      return this._promiseXHR(xhr);
     },
     getUserTimeline: function(params) {
-      var uri = this.getRequestURI(this.endpoints.userTimeline);
-      var xhr = this.getOAuthedRequest('GET', uri, params);
-      return this.promiseXHR(xhr);
+      var uri = this._getRequestURI(this.endpoints.userTimeline);
+      var xhr = this._getOAuthedRequest('GET', uri, params);
+      return this._promiseXHR(xhr);
     },
     getHomeTimeline: function(params) {
-      var uri = this.getRequestURI(this.endpoints.homeTimeline);
-      var xhr = this.getOAuthedRequest('GET', uri, params);
-      return this.promiseXHR(xhr);
+      var uri = this._getRequestURI(this.endpoints.homeTimeline);
+      var xhr = this._getOAuthedRequest('GET', uri, params);
+      return this._promiseXHR(xhr);
     },
     getRetweetsOfMe: function(params) {
-      var uri = this.getRequestURI(this.endpoints.retweetsOfMe);
-      var xhr = this.getOAuthedRequest('GET', uri, params);
-      return this.promiseXHR(xhr);
+      var uri = this._getRequestURI(this.endpoints.retweetsOfMe);
+      var xhr = this._getOAuthedRequest('GET', uri, params);
+      return this._promiseXHR(xhr);
     },
     getRetweets: function(statusId, params) {
-      var uri = this.getRequestURI(this.endpoints.retweets, {
+      var uri = this._getRequestURI(this.endpoints.retweets, {
         id: statusId
       });
-      var xhr = this.getOAuthedRequest('GET', uri, params);
-      return this.promiseXHR(xhr);
+      var xhr = this._getOAuthedRequest('GET', uri, params);
+      return this._promiseXHR(xhr);
     },
     showStatus: function(statusId, params) {
-      var uri = this.getRequestURI(this.endpoints.showStatus, {
+      var uri = this._getRequestURI(this.endpoints.showStatus, {
         id: statusId
       });
-      var xhr = this.getOAuthedRequest('GET', uri, params);
-      return this.promiseXHR(xhr);
+      var xhr = this._getOAuthedRequest('GET', uri, params);
+      return this._promiseXHR(xhr);
     },
     destroyStatus: function(statusId, params) {
-      var uri = this.getRequestURI(this.endpoints.destroyStatus, {
+      var uri = this._getRequestURI(this.endpoints.destroyStatus, {
         id: statusId
       });
-      var xhr = this.getOAuthedRequest('POST', uri, params);
-      return this.promiseXHR(xhr);
+      var xhr = this._getOAuthedRequest('POST', uri, params);
+      return this._promiseXHR(xhr);
     },
     updateStatus: function(params) {
-      var uri = this.getRequestURI(this.endpoints.updateStatus);
-      var xhr = this.getOAuthedRequest('POST', uri, params);
-      return this.promiseXHR(xhr);
+      var uri = this._getRequestURI(this.endpoints.updateStatus);
+      var xhr = this._getOAuthedRequest('POST', uri, params);
+      return this._promiseXHR(xhr);
     },
-    retweetStatus: function(params) {
-      var uri = this.getRequestURI(this.endpoints.retweetStatus, {
+    retweetStatus: function(statusId, params) {
+      var uri = this._getRequestURI(this.endpoints.retweetStatus, {
         id: statusId
       });
-      var xhr = this.getOAuthedRequest('POST', uri, params);
-      return this.promiseXHR(xhr);
+      var xhr = this._getOAuthedRequest('POST', uri, params);
+      return this._promiseXHR(xhr);
     },
     updateStatusWithMedia: function(params) {
-      var uri = this.getRequestURI(this.endpoints.updateStatusWithMedia);
-      var xhr = this.getOAuthedRequest('POST', uri, params);
-      return this.promiseXHR(xhr);
+      var uri = this._getRequestURI(this.endpoints.updateStatusWithMedia);
+      var xhr = this._getOAuthedRequest('POST', uri, params);
+      return this._promiseXHR(xhr);
     },
     getOEmbed: function(params) {
-      var uri = this.getRequestURI(this.endpoints.oEmbed);
-      var xhr = this.getOAuthedRequest('GET', uri, params);
-      return this.promiseXHR(xhr);
+      var uri = this._getRequestURI(this.endpoints.oEmbed);
+      var xhr = this._getOAuthedRequest('GET', uri, params);
+      return this._promiseXHR(xhr);
     },
     getRetweeterIds: function(params) {
-      var uri = this.getRequestURI(this.endpoints.getRetweeterIds);
-      var xhr = this.getOAuthedRequest('GET', uri, params);
-      return this.promiseXHR(xhr);
+      var uri = this._getRequestURI(this.endpoints.getRetweeterIds);
+      var xhr = this._getOAuthedRequest('GET', uri, params);
+      return this._promiseXHR(xhr);
     }
   };
 
