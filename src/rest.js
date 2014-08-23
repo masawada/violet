@@ -3,10 +3,8 @@
 //
 
 (function(Violet) {
-  var xhr = new Violet.XHR();
-
   var Rest = function(oauth) {
-
+    this.oauth = oauth;
   };
   Rest.prototype = {
     apiBase: 'https://api.twitter.com/1.1/',
@@ -26,21 +24,28 @@
 
       return this.apiBase + path;
     },
-    getMentionsTimeline: function(params) {
-      var url = this.resolveEndpoint(this.endpoints.mentionsTimeline);
-      return xhr.get({
-        url: url,
-        data: params
+    getOAuthedXHR: function(method, uri, data) {
+      var xhr = new Violet.XHR();
+      xhr.setOAuthHeader(this.oauth.obtainOAuthParams());
+      return xhr;
+    },
+    sendGetRequest: function(uri, data) {
+      var xhr = this.getOAuthedXHR('get', uri, data)
+      xhr.get({
+        uri: uri,
+        data: data
       });
+      return xhr;
+    }
+    getMentionsTimeline: function(params) {
+      var uri = this.resolveEndpoint(this.endpoints.mentionsTimeline);
+      return this.sendGetRequest(uri, params);
     },
     getRetweets: function(statusId, params) {
-      var url = this.resolveEndpoint(this.endpoints.retweets, {
+      var uri = this.resolveEndpoint(this.endpoints.retweets, {
         id: statusId
       });
-      return xhr.get({
-        url: url,
-        data: params
-      });
+      return this.sendGetRequest(uri, params);
     }
   };
 
