@@ -1,5 +1,13 @@
 # Violet.js - A Twitter Library for Firefox OS
 
+## Setup
+
+```sh
+$ git pull
+$ git submodule init
+$ git submodule update
+```
+
 ## License
 ### Violet.js
 The MIT License (MIT)
