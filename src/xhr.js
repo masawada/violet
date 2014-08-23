@@ -3,9 +3,9 @@
 (function(Violet) {
   var XHR = function(args) {
     this.method = args.method || 'GET';
-    this.format_uri_and_data(args.uri || '', args.data || {});
+    this.formatURIAndData(args.uri || '', args.data || {});
     this.xhr = new XMLHTTPRequest({mozSystem: true});
-    this.authorization_header = null;
+    this.authorizationHeader = null;
   };
 
   XHR.prototype = {
@@ -16,8 +16,8 @@
 
       xhr.open(this.method, this.uri, true);
 
-      if (this.authorization_header !== null) {
-        xhr.setRequestHeader('Authorization', this.authorization_header);
+      if (this.authorizationHeader !== null) {
+        xhr.setRequestHeader('Authorization', this.authorizationHeader);
       }
 
       if (this.method === 'POST') {
@@ -29,32 +29,32 @@
     stop: function() {
       this.xhr.abort();
     },
-    formatUriAndData: function (raw_uri, raw_data) {
-      var key, result, data = [];
+    formatURIAndData: function (rawURI, rawData) {
+      var key, data = [];
 
-      for (key in raw_data) {
-        if (raw_data.hasOwnProperty(key)) {
-          data.push(key + '=' + Violet.Util.uri_encode(raw_data[key]));
+      for (key in rawData) {
+        if (rawData.hasOwnProperty(key)) {
+          data.push(key + '=' + Violet.Util.URIEncode(rawData[key]));
         }
       }
 
-      this.raw_data = raw_data;
+      this.rawData = rawData;
       if (this.method === 'GET') {
-        this.uri =  raw_uri + ((data.length > 0) ? '?' + data.join('&') : '');
+        this.uri =  rawURI + ((data.length > 0) ? '?' + data.join('&') : '');
         this.data = null;
       } else if (this.method === 'POST') {
-        this.uri = raw_uri;
+        this.uri = rawURI;
         this.data = data.join('&');
       }
     },
-    setOAuthHeader: function(oauth_params) {
+    setOAuthHeader: function(OAuthParams) {
       var key = '', params = [];
-      for (key in oauth_params) {
-        if (oauth_params.hasOwnProperty(key)) {
-          params.push(key + '="' + oauth_params[key] + '"');
+      for (key in OAuthParams) {
+        if (OAuthParams.hasOwnProperty(key)) {
+          params.push(key + '="' + OAuthParams[key] + '"');
         }
       }
-      this.authorization_header = 'OAuth ' + params.join(', ');
+      this.authorizationHeader = 'OAuth ' + params.join(', ');
     },
     addEventListener: function() {
       this.xhr.addEventListener.apply(this.xhr, arguments);
