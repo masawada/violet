@@ -1,4 +1,6 @@
+//
 // Violet.Util
+//
 
 (function(Violet) {
   var Util = {};

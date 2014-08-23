@@ -1,4 +1,6 @@
+//
 // Violet.XHR
+//
 
 (function(Violet) {
   var XHR = function(args) {
