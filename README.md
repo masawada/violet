@@ -13,7 +13,7 @@ $ npm install
 
 ```sh
 $ cd test
-$ bower install
+$ ../node_modules/.bin/bower install
 ```
 
 install and run test app in firefox os simulator.
