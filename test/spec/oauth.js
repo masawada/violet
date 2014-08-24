@@ -1,7 +1,7 @@
 'use strict';
 
 describe('oauth', function() {
-  it('サーバに接続する', function(done) {
+  it('connect server', function(done) {
     var xhr = new XMLHttpRequest({mozSystem: true});
     xhr.open('GET', 'https://twitter.com');
     xhr.addEventListener('load', function() {
@@ -9,8 +9,17 @@ describe('oauth', function() {
       done();
     });
     xhr.addEventListener('error', function() {
-      done(new Error('サーバーに接続できませんでした'));
+      done(new Error('can\'t connect server'));
     });
     xhr.send();
+  });
+  it('request access token', function(done) {
+    var oauth = new Violet.OAuth({
+      consumerKey: '',
+      consumerSecret: ''
+    });
+    oauth.requestToken().then(function(res) {
+      console.log(res);
+    });
   });
 });
