@@ -2,7 +2,6 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
-var mocha = require('gulp-mocha');
 
 var paths  = {
   scripts: ['src/*.js'],
@@ -19,6 +18,4 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('test', function () {
-  gulp.src(paths.tests, {read: false})
-    .pipe(mocha());
 });
