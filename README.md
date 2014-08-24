@@ -9,6 +9,17 @@ $ git submodule update
 $ npm install
 ```
 
+## Test
+
+```sh
+$ cd test
+$ bower install
+```
+
+install and run test app in firefox os simulator.
+
+test app is `./test/`.
+
 ## License
 ### Violet.js
 The MIT License (MIT)
