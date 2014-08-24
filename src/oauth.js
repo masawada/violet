@@ -3,6 +3,9 @@
 //
 
 (function(Violet) {
+  var Util = Violet.Util;
+  var HTTPClient = Violet.HTTPClient;
+
   var OAuth = function(args) {
     this.consumerKey = args.consumerKey;
     this.consumerSecret = args.consumerSecret;
@@ -19,7 +22,7 @@
       var method = 'POST';
       var uri = 'https://api.twitter.com/oauth/request_token';
 
-      var client = new Violet.HTTPClient({
+      var client = new HTTPClient({
         method: method,
         uri: uri
       });
@@ -50,7 +53,7 @@
       var method = 'POST';
       var uri = 'https://api.twitter.com/oauth/access_token';
 
-      var client = new Violet.HTTPClient({
+      var client = new HTTPClient({
         method: method,
         uri: uri
       });
@@ -94,7 +97,7 @@
         oauth_version: '1.0'
       };
 
-      params = Violet.Util.mergeMaps(params, additionalParams, client.rawData);
+      params = Util.mergeMaps(params, additionalParams, client.rawData);
 
       params.oauth_signature = this._generateSignature(client.method, client.uri, params, secret);
 
@@ -110,10 +113,10 @@
       return nonce;
     },
     _generateSignature: function(method, uri, params, OAuthSecret) {
-      var baseString = method.toUpperCase() + '&' + Violet.Util.URIEncode(uri) + '&';
+      var baseString = method.toUpperCase() + '&' + Util.URIEncode(uri) + '&';
 
       baseString += Object.keys(params).sort().map(function(key) {
-        return key + '=' + Violet.Util.URIEncode(params[key]);
+        return key + '=' + Util.URIEncode(params[key]);
       }).join('&');
 
       if (!OAuthSecret) {
