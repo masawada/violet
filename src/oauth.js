@@ -35,19 +35,19 @@
 
       client.start();
 
-      var promise = new Promise();
-      client.addEventListener('load', function(xhr) {
-        var res = {};
-        xhr.responseText.split('&').forEach(function(keyValue) {
-          var kv = keyValue.split('=');
-          res[kv[0]] = kv[1];
-        });
+      return new Promise(function(resolve, reject) {
+        client.addEventListener('load', function(xhr) {
+          var res = {};
+          xhr.responseText.split('&').forEach(function(keyValue) {
+            var kv = keyValue.split('=');
+            res[kv[0]] = kv[1];
+          });
 
-        this.OAuthToken = res.oauth_token;
-        this.OAuthTokenSecret = res.oauth_token_secret;
-        promise.resolve(res);
-      }.bind(this));
-      return promise;
+          this.OAuthToken = res.oauth_token;
+          this.OAuthTokenSecret = res.oauth_token_secret;
+          resolve(res);
+        }.bind(this));
+      });
     },
     obtainAccessTokenWithPIN: function(PIN) {
       var method = 'POST';
@@ -67,19 +67,19 @@
 
       client.start();
 
-      var promise = new Promise();
-      client.addEventListener('load', function(xhr) {
-        var res = {};
-        xhr.responseText.split('&').forEach(function(keyValue) {
-          var kv = keyValue.split('=');
-          res[kv[0]] = kv[1];
-        });
+      return new Promise(function(resolve, reject) {
+        client.addEventListener('load', function(xhr) {
+          var res = {};
+          xhr.responseText.split('&').forEach(function(keyValue) {
+            var kv = keyValue.split('=');
+            res[kv[0]] = kv[1];
+          });
 
-        this.accessToken = res.access_token;
-        this.accessTokenSecret = res.access_token_secret;
-        promise.resolve(res);
-      }.bind(this));
-      return promise;
+          this.accessToken = res.access_token;
+          this.accessTokenSecret = res.access_token_secret;
+          promise.resolve(res);
+        }.bind(this));
+      });
     },
     obtainOAuthParams: function(client) {
       var params = {

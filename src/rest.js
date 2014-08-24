@@ -46,11 +46,11 @@
     },
     _promiseXHR: function(xhr, callback) {
       xhr.start();
-      var promise = new Promise();
-      xhr.addEventListener('load', function() {
-        promise.resolve(callback(JSON.parse(this.reseponseText)));
+      return new Promise(function(resolve, reject) {
+        xhr.addEventListener('load', function() {
+          resolve(callback(JSON.parse(this.reseponseText)));
+        });
       });
-      return promise;
     },
     getMentionsTimeline: function(params) {
       var uri = this._getRequestURI(this.endpoints.mentionsTimeline);
