@@ -5,7 +5,6 @@ var sourcemaps = require('gulp-sourcemaps');
 
 var paths  = {
   scripts: ['src/*.js'],
-  tests: ['test/*.js']
 };
 
 gulp.task('scripts', function () {
@@ -15,7 +14,4 @@ gulp.task('scripts', function () {
       .pipe(concat('violet.min.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('build/js'));
-});
-
-gulp.task('test', function () {
 });
