@@ -6,7 +6,7 @@
   var HTTPClient = function(args) {
     this.method = args.method || 'GET';
     this.formatURIAndData(args.uri || '', args.data || {});
-    this.xhr = new XMLHTTPRequest({mozSystem: true});
+    this.xhr = new XMLHttpRequest({mozSystem: true});
     this.authorizationHeader = null;
   };
 
