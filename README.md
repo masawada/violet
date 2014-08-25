@@ -4,6 +4,7 @@
 
 ```sh
 $ git clone git@github.com:masawada/violet.git
+$ cd violet
 $ git submodule init
 $ git submodule update
 $ npm install
