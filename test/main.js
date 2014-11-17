@@ -12,7 +12,8 @@ require([
   'src/tweet.js',
   'src/rest.js',
   'src/streaming.js',
-  'spec/oauth'
+  'spec/oauth',
+  'spec/util'
 ], function() {
   mocha.run();
 });
