@@ -1,25 +1,21 @@
-'use strict';
+(function() {
+  'use strict';
+  var oauth;
 
-describe('oauth', function() {
-  it('connect server', function(done) {
-    var xhr = new XMLHttpRequest({mozSystem: true});
-    xhr.open('GET', 'https://twitter.com');
-    xhr.addEventListener('load', function() {
-      chai.expect(this.status).to.equal(200);
+  describe('oauth', function() {
+    beforeEach(function(done) {
+      oauth = new Violet.OAuth({
+        consumerKey: '',
+        consumerSecret: ''
+      });
       done();
     });
-    xhr.addEventListener('error', function() {
-      done(new Error('can\'t connect server'));
+    it('initializing', function() {
+      chai.expect(oauth).to.be.ok;
     });
-    xhr.send();
-  });
-  it('request access token', function(done) {
-    var oauth = new Violet.OAuth({
-      consumerKey: '',
-      consumerSecret: ''
-    });
-    oauth.requestToken().then(function(res) {
-      console.log(res);
+    it('_generateNonce', function() {
+      var nonce = oauth._generateNonce(64);
+      chai.expect(nonce).to.match(/[A-Za-z0-9]{64}/);
     });
   });
-});
+})();
