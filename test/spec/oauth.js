@@ -2,7 +2,7 @@
   'use strict';
   var oauth;
 
-  describe('oauth', function() {
+  describe('OAuth', function() {
     beforeEach(function(done) {
       oauth = new Violet.OAuth({
         consumerKey: '',
