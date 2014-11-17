@@ -8,5 +8,16 @@
       var str = Violet.Util.URIEncode(raw_str);
       chai.expect(str).to.equal(expect_str);
     });
+    it('mergeMaps', function() {
+      var merged = Violet.Util.mergeMaps({a: '1', b: '2'}, {d: '4'}, {c: '3'});
+      chai.expect(merged).to.deep.equal({a: '1', b: '2', c: '3', d: '4'});
+    });
+    it('resolveEndpoint', function() {
+      var endpoint = '/statuses/show/:id';
+      var params = {id: "hoge"};
+      var expect_str = "/statuses/show/hoge";
+      var resolved = Violet.Util.resolveEndpoint(endpoint, params);
+      chai.expect(resolved).to.equal(expect_str);
+    });
   });
 })();
