@@ -3,12 +3,11 @@
   var oauth;
 
   describe('OAuth', function() {
-    beforeEach(function(done) {
+    beforeEach(function() {
       oauth = new Violet.OAuth({
         consumerKey: '',
         consumerSecret: ''
       });
-      done();
     });
     it('initializing', function() {
       chai.expect(oauth).to.be.ok;
