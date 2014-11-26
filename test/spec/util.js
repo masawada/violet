@@ -19,9 +19,11 @@
       });
     });
 
-    it('mergeMaps', function() {
-      var merged = Violet.Util.mergeMaps({a: '1', b: '2'}, {d: '4'}, {c: '3'});
-      chai.expect(merged).to.deep.equal({a: '1', b: '2', c: '3', d: '4'});
+    describe('mergeMaps', function() {
+      it('mergeMaps', function() {
+        var merged = Violet.Util.mergeMaps({a: '1', b: '2'}, {d: '4'}, {c: '3'});
+        chai.expect(merged).to.deep.equal({a: '1', b: '2', c: '3', d: '4'});
+      });
     });
     it('resolveEndpoint', function() {
       var endpoint = '/statuses/show/:id';
