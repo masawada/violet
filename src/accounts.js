@@ -11,8 +11,28 @@
 
   Accounts.prototype = {
     requestAuthorizeURI: function() {
+      var uri_base = 'https://api.twitter.com/oauth/authorize?oauth_token=';
+      return new Promise(function(resolve, reject) {
+        this._oauth.requestToken()
+        .then(function(res) {
+          resolve(uri_base + res.oauth_token);
+        })
+        .catch(function() {
+          reject();
+        });
+      }.bind(this));
     },
     addWithPIN: function(pin) {
+      return new Promise(function(resolve, reject) {
+        this._oauth.obtainAccessTokenWithPIN(pin)
+        .then(function(res) {
+          this.add(res.user_id, res.oauth_token, res.oauth_token_secret);
+          resolve();
+        })
+        .catch(function() {
+          reject();
+        });
+      }.bind(this));
     },
     add: function(accountId, accessToken, accessTokenSecret) {
       this._accounts[accountId] = {
