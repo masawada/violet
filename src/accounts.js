@@ -14,6 +14,12 @@
     },
     addWithPIN: function(pin) {
     },
+    add: function(accountId, accessToken, accessTokenSecret) {
+      this._accounts[accountId] = {
+        accessToken: accessToken,
+        accessTokenSecret: accessTokenSecret
+      };
+    },
     getList: function() {
       return Object.keys(this._accounts).sort();
     },
