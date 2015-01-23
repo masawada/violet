@@ -37,6 +37,9 @@
     },
     remove: function(accountId) {
       delete this._accounts[accountId];
+      if (this._primaryId === accountId) {
+        this._primaryId = Object.keys(this._accounts).sort()[0] || "";
+      }
     }
   };
 
