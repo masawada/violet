@@ -23,6 +23,7 @@
     getOAuthManager: function() {
     },
     remove: function(accountId) {
+      delete this._accounts[accountId];
     }
   };
 
