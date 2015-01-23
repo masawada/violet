@@ -16,6 +16,7 @@
     getList: function() {
     },
     get: function(accountId) {
+      return this._accounts[accountId];
     },
     setPrimary: function(accountId) {
       if (this._accounts[accountId]) {
