@@ -15,7 +15,7 @@
     addWithPIN: function(pin) {
     },
     getList: function() {
-      return Object.keys(this._accounts);
+      return Object.keys(this._accounts).sort();
     },
     get: function(accountId) {
       accountId = accountId || this._primaryId;
