@@ -5,8 +5,8 @@
 (function(Violet) {
   var Util = Violet.Util;
 
-  var Streaming = function(oauth) {
-    this.oauth = oauth;
+  var Streaming = function(accounts) {
+    this.accounts = accounts;
     this._events = {};
   };
 
