@@ -5,7 +5,7 @@
 (function(Violet) {
   var Accounts = function(keys) {
     this._accounts = {};
-    this._primaryId = "";
+    this._primaryId = '';
     this._oauth = new Violet.OAuth(keys);
   };
 
@@ -25,7 +25,7 @@
     },
     get: function(accountId) {
       accountId = accountId || this._primaryId;
-      return this._accounts[accountId] || {accessToken: "", accessTokenSecret: ""};
+      return this._accounts[accountId] || {accessToken: '', accessTokenSecret: ''};
     },
     setPrimary: function(accountId) {
       if (this._accounts[accountId]) {
@@ -44,7 +44,7 @@
     remove: function(accountId) {
       delete this._accounts[accountId];
       if (this._primaryId === accountId) {
-        this._primaryId = Object.keys(this._accounts).sort()[0] || "";
+        this._primaryId = Object.keys(this._accounts).sort()[0] || '';
       }
     }
   };
