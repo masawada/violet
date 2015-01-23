@@ -5,6 +5,7 @@
 (function(Violet) {
   var Accounts = function() {
     this._accounts = {};
+    this._primaryId = "";
   };
 
   Accounts.prototype = {
@@ -17,6 +18,9 @@
     get: function(accountId) {
     },
     setPrimary: function(accountId) {
+      if (this._accounts[accountId]) {
+        this._primaryId = accountId;
+      }
     },
     getPrimary: function() {
     },
