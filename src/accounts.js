@@ -3,10 +3,10 @@
 //
 
 (function(Violet) {
-  var Accounts = function() {
+  var Accounts = function(keys) {
     this._accounts = {};
     this._primaryId = "";
-    this._oauth = new Violet.OAuth();
+    this._oauth = new Violet.OAuth(keys);
   };
 
   Accounts.prototype = {
