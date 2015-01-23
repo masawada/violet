@@ -21,6 +21,14 @@
     },
     on: function(key, callback) {
       this._events[key] = callback;
+    },
+    startUserStream: function(accountId) {
+    },
+    stopUserStream: function(accountId) {
+    },
+    startFilterStream: function(accountId) {
+    },
+    stopFilterStream: function(accountId) {
     }
   };
   Violet.Streaming = Streaming;
