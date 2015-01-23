@@ -17,6 +17,7 @@
       return Object.keys(this._accounts);
     },
     get: function(accountId) {
+      accountId = accountId || this._primaryId;
       return this._accounts[accountId];
     },
     setPrimary: function(accountId) {
