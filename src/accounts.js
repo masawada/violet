@@ -23,6 +23,7 @@
       }
     },
     getPrimary: function() {
+      return this.get(this._primaryId);
     },
     getOAuthManager: function() {
     },
