@@ -39,6 +39,9 @@
         accessToken: accessToken,
         accessTokenSecret: accessTokenSecret
       };
+      if (this._primaryId === '') {
+        this.setPrimary(accountId);
+      }
     },
     getList: function() {
       return Object.keys(this._accounts).sort();
