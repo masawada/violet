@@ -4,7 +4,7 @@ var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 
 var paths  = {
-  scripts: ['src/*.js'],
+  scripts: ['src/*.js', 'src/streaming/*.js'],
 };
 
 gulp.task('scripts', function () {
