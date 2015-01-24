@@ -9,15 +9,15 @@
 
   MessageParser.parse = function(accountId, data) {
     if (data.id) {
-      //return {
-      //  type: 'tweet',
-      //  data: tweetObject
-      //};
+      return {
+        type: 'tweet',
+        data: new Violet.Tweet(data, this.accounts, accountId)
+      };
     } else if(data.event) {
-      //return {
-      //  type: 'event',
-      //  data: Violet.Streaming.Event(data, this.accounts, accountId)
-      //};
+      return {
+        type: 'event',
+        data: Violet.Streaming.Event(data, this.accounts, accountId)
+      };
     } else {
       return {};
     }
