@@ -63,7 +63,7 @@
         uri: uri
       });
 
-      conn.setOAuthHeader(oauth.obtainOAuthParams(method, uri));
+      conn.setOAuthHeader(oauth.obtainOAuthParams(conn));
       conn.addEventListener('progress', function(event) {
         this._parseStream(accountId, streamType, event.response);
       }.bind(this));
