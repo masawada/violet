@@ -57,6 +57,7 @@
       delete this._connections.filterStream[accountId];
     },
     _startStreaming: function(accountId, method, uri, streamType) {
+      accountId = accountId || this.accounts.getPrimary().accountId;
       var oauth = this.accounts.getOAuthManager(accountId);
       var conn = new Violet.HTTPClient({
         method: method,

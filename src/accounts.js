@@ -26,7 +26,7 @@
       return new Promise(function(resolve, reject) {
         this._oauth.obtainAccessTokenWithPIN(pin)
         .then(function(res) {
-          this.add(res.user_id, res.oauth_token, res.oauth_token_secret);
+          this.add(res.user_id, res.screen_name, res.oauth_token, res.oauth_token_secret);
           resolve();
         }.bind(this))
         .catch(function() {
@@ -34,8 +34,10 @@
         });
       }.bind(this));
     },
-    add: function(accountId, accessToken, accessTokenSecret) {
+    add: function(accountId, screenName, accessToken, accessTokenSecret) {
       this._accounts[accountId] = {
+        accountId: accountId,
+        screenName: screenName,
         accessToken: accessToken,
         accessTokenSecret: accessTokenSecret
       };
