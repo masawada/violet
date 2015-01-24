@@ -115,16 +115,16 @@
     _generateSignature: function(method, uri, params, OAuthSecret) {
       var baseString = method.toUpperCase() + '&' + Util.URIEncode(uri) + '&';
 
-      baseString += Object.keys(params).sort().map(function(key) {
+      baseString += Util.URIEncode(Object.keys(params).sort().map(function(key) {
         return key + '=' + Util.URIEncode(params[key]);
-      }).join('&');
+      }).join('&'));
 
       if (!OAuthSecret) {
         OAuthSecret = '';
       }
 
       var secretKey = this.consumerSecret + '&' + OAuthSecret;
-      return btoa(CryptoJS.HmacSHA1(baseString, secretKey));
+      return Util.URIEncode(CryptoJS.HmacSHA1(baseString, secretKey).toString(CryptoJS.enc.Base64));
     }
   };
 
