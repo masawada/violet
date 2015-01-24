@@ -18,6 +18,11 @@
         type: 'event',
         data: Violet.Streaming.Event(data, this.accounts, accountId)
       };
+    } else if (data.delete && data.delete.status) {
+      return {
+        type: 'delete',
+        data: data.delete.status
+      };
     } else {
       return {};
     }
