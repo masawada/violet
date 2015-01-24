@@ -47,7 +47,7 @@
           this.OAuthTokenSecret = res.oauth_token_secret;
           resolve(res);
         }.bind(this));
-      });
+      }.bind(this));
     },
     obtainAccessTokenWithPIN: function(PIN) {
       var method = 'POST';
@@ -59,7 +59,7 @@
       });
 
       var OAuthParams = {
-        oauth_token: this.oauthToken,
+        oauth_token: this.OAuthToken,
         oauth_verifier: PIN,
       };
       OAuthParams = this._obtainOAuthParams(client, OAuthParams, this.OAuthTokenSecret);
@@ -74,11 +74,8 @@
             var kv = keyValue.split('=');
             res[kv[0]] = kv[1];
           });
-
-          this.accessToken = res.access_token;
-          this.accessTokenSecret = res.access_token_secret;
-          promise.resolve(res);
-        }.bind(this));
+          resolve(res);
+        });
       });
     },
     obtainOAuthParams: function(client) {

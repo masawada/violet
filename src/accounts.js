@@ -28,7 +28,7 @@
         .then(function(res) {
           this.add(res.user_id, res.oauth_token, res.oauth_token_secret);
           resolve();
-        })
+        }.bind(this))
         .catch(function() {
           reject();
         });
