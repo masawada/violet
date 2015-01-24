@@ -83,7 +83,7 @@
         oauth_token: this.accessToken,
       };
 
-      return _obtainOAuthParams(client, params, this.accessTokenSecret);
+      return this._obtainOAuthParams(client, params, this.accessTokenSecret);
     },
     _obtainOAuthParams: function(client, additionalParams, secret) {
       var params = {
