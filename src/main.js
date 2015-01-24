@@ -2,10 +2,7 @@
 // violet.js
 //
 
-var Violet = function (oauth) {
-  this.oauth = new Violet.OAuth(oauth);
-  this.rest = new Violet.Rest(this.oauth);
-};
-
-Violet.prototype = {
+var Violet = function (keys) {
+  this.accounts = new Violet.Accounts(keys);
+  this.streaming = new Violet.Streaming(this.accounts);
 };
