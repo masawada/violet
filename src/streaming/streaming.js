@@ -64,8 +64,11 @@
       });
 
       conn.setOAuthHeader(oauth.obtainOAuthParams(conn));
-      conn.addEventListener('progress', function(event) {
-        this._parseStream(accountId, streamType, event.response);
+      conn.addEventListener('progress', function(xhr) {
+        // ignore non JSON massages
+        var messages = xhr.responseText.split('\r\n');
+        if(!messages[messages.length-2]){ return; }
+        this._parseStream(accountId, streamType, JSON.parse(messages[messages.length-2]));
       }.bind(this));
 
       conn.start();
@@ -74,7 +77,7 @@
     _parseStream: function(accountId, streamType, response) {
       var parsedMessage = this.messageParser.parse(accountId, response);
       if (typeof this._events[parsedMessage.type] === 'function') {
-        this._events[parsedMessage.type].call(null, streamType, parsedMessage.data);
+        this._events[parsedMessage.type].call(null, accountId, streamType, parsedMessage.data);
       }
     }
   };
