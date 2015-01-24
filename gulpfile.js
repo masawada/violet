@@ -4,7 +4,19 @@ var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 
 var paths  = {
-  scripts: ['src/*.js', 'src/streaming/*.js'],
+  scripts: [
+    'src/main.js',
+    'src/util.js',
+    'src/http.js',
+    'src/oauth.js',
+    'src/accounts.js',
+    'src/rest.js',
+    'src/tweet.js',
+    'src/user.js',
+    'src/streaming/streaming.js',
+    'src/streaming/message_parser.js',
+    'src/streaming/events.js',
+  ],
 };
 
 gulp.task('scripts', function () {
