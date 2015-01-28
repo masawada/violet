@@ -4,14 +4,14 @@
 
 (function(Violet) {
   var User = function(userData, accounts, accountId) {
-    this.accounts = accounts;
+    this._accounts = accounts;
     this._accountId = accountId;
     this._initWithUser(userData);
   };
 
   User.prototype = {
     _initWithUser: function(user) {
-      var attributes = ["id", "id_str", "name", "screen_name", "location",
+      var attributes = ["name", "screen_name", "location",
         "profile_location", "description", "url", "entities", "protected",
         "followers_count", "friends_count", "listed_count", "created_at",
         "favourites_count", "utc_offset", "time_zone", "geo_enabled", "verified",
@@ -24,9 +24,12 @@
         "profile_use_background_image", "default_profile", "default_profile_image",
         "following", "follow_request_sent", "notifications"];
 
+      // register attributes
       attributes.forEach(function(attribute) {
         this[attribute] = user[attribute] || null;
       }.bind(this));
+
+      this.id = user.id_str;
     }
   };
 
