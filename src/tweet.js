@@ -4,7 +4,7 @@
 
 (function(Violet) {
   var Tweet = function(tweetData, accounts, accountId) {
-    this.accounts = accounts;
+    this._accounts = accounts;
     this._accountId = accountId;
     this._initWithTweet(tweetData);
   };
@@ -17,7 +17,7 @@
       if (tweet.retweeted_status) {
         this.retweeted_status = true;
         this.retweeted_id = tweet.id_str;
-        this.retweeted_user = new Violet.User(tweet.user, this.accounts, this._accountId);
+        this.retweeted_user = new Violet.User(tweet.user, this._accounts, this._accountId);
         this.retweeted_at = new Date(tweet.created_at);
         tweetData = tweet.retweeted_status;
       } else {
@@ -31,7 +31,7 @@
       }.bind(this));
 
       this.id = tweetData.id_str;
-      this.user = new Violet.User(tweetData.user, this.accounts, this._accountId);
+      this.user = new Violet.User(tweetData.user, this._accounts, this._accountId);
       this.created_at = new Date(tweetData.created_at);
       this.source = {
         name: tweetData.source.match(/<a.*>(.*)<\/a>/)[1],
