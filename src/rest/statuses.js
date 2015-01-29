@@ -14,18 +14,18 @@
         })];
       }
     },
-    'homeTimeline': {
+    'userTimeline': {
       method: 'GET',
-      path: 'statuses/home_timeline',
+      path: 'statuses/user_timeline',
       responseProc: function(response) {
         return [response.map(function(tweet) {
           return new Tweet(tweet);
         })];
       }
     },
-    'userTimeline': {
+    'homeTimeline': {
       method: 'GET',
-      path: 'statuses/user_timeline',
+      path: 'statuses/home_timeline',
       responseProc: function(response) {
         return [response.map(function(tweet) {
           return new Tweet(tweet);
