@@ -57,6 +57,13 @@
         return [new Tweet(tweet)];
       }
     },
+    'destroy': {
+      method: 'POST',
+      path: 'statuses/destroy/:id',
+      responseProc: function(tweet) {
+        return [new Tweet(tweet)];
+      }
+    },
     'update': {
       method: 'POST',
       path: 'statuses/update',
