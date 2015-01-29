@@ -86,17 +86,17 @@
       return this._obtainOAuthParams(client, params, this.accessTokenSecret);
     },
     _obtainOAuthParams: function(client, additionalParams, secret) {
-      var params = {
+      var params = Util.mergeMaps({
         oauth_consumer_key: this.consumerKey,
         oauth_nonce: this._generateNonce(32),
         oauth_signature_method: 'HMAC-SHA1',
         oauth_timestamp: String(Math.floor((new Date())/1000)),
         oauth_version: '1.0'
-      };
+      }, additionalParams);
 
-      params = Util.mergeMaps(params, additionalParams, client.rawData);
+      var oauth_params = Util.mergeMaps(params, client.rawData);
 
-      params.oauth_signature = this._generateSignature(client.method, client.uri, params, secret);
+      params.oauth_signature = this._generateSignature(client.method, client.uri, oauth_params, secret);
 
       return params;
     },
