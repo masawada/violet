@@ -10,6 +10,7 @@
 
     // register methods
     this._registerMethods('statuses', Violet.REST.Statuses);
+    this._registerMethods('favorites', Violet.REST.Favorites);
   };
 
   REST.prototype = {
