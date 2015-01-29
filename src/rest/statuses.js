@@ -32,6 +32,15 @@
         })];
       }
     },
+    'retweetsOfMe': {
+      method: 'GET',
+      path: 'statuses/retweets_of_me',
+      responseProc: function(response) {
+        return [response.map(function(tweet) {
+          return new Tweet(tweet);
+        })];
+      }
+    },
     'update': {
       method: 'POST',
       path: 'statuses/update',
