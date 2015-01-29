@@ -31,6 +31,20 @@
           return new Tweet(tweet);
         })];
       }
+    },
+    'update': {
+      method: 'POST',
+      path: 'statuses/update',
+      responseProc: function(tweet) {
+        return [new Tweet(tweet)];
+      }
+    },
+    'retweet': {
+      method: 'POST',
+      path: 'statuses/retweet/:id',
+      responseProc: function(tweet) {
+        return [new Tweet(tweet)];
+      }
     }
   };
 
