@@ -50,6 +50,13 @@
         })];
       }
     },
+    'show': {
+      method: 'GET',
+      path: 'statuses/show/:id',
+      responseProc: function(tweet) {
+        return [new Tweet(tweet)];
+      }
+    },
     'update': {
       method: 'POST',
       path: 'statuses/update',
