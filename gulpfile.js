@@ -16,6 +16,14 @@ var paths  = {
     'src/streaming/streaming.js',
     'src/streaming/message_parser.js',
     'src/streaming/events.js',
+    'src/rest/request.js',
+    'src/rest/rest.js',
+    'src/rest/statuses.js',
+    'src/rest/favorites.js',
+    'src/vendor/crypto-js/src/core.js',
+    'src/vendor/crypto-js/src/sha1.js',
+    'src/vendor/crypto-js/src/hmac.js',
+    'src/vendor/crypto-js/src/enc-base64.js'
   ],
 };
 
