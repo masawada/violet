@@ -20,6 +20,7 @@ var paths  = {
     'src/rest/rest.js',
     'src/rest/statuses.js',
     'src/rest/favorites.js',
+    'src/rest/media.js',
     'src/vendor/crypto-js/src/core.js',
     'src/vendor/crypto-js/src/sha1.js',
     'src/vendor/crypto-js/src/hmac.js',

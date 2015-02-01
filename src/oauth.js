@@ -78,14 +78,14 @@
         });
       });
     },
-    obtainOAuthParams: function(client) {
+    obtainOAuthParams: function(client, multipart) {
       var params = {
         oauth_token: this.accessToken,
       };
 
-      return this._obtainOAuthParams(client, params, this.accessTokenSecret);
+      return this._obtainOAuthParams(client, params, this.accessTokenSecret, multipart);
     },
-    _obtainOAuthParams: function(client, additionalParams, secret) {
+    _obtainOAuthParams: function(client, additionalParams, secret, multipart) {
       var params = Util.mergeMaps({
         oauth_consumer_key: this.consumerKey,
         oauth_nonce: this._generateNonce(32),
@@ -94,7 +94,7 @@
         oauth_version: '1.0'
       }, additionalParams);
 
-      var oauth_params = Util.mergeMaps(params, client.rawData);
+      var oauth_params = (multipart)? params : Util.mergeMaps(params, client.rawData);
 
       params.oauth_signature = this._generateSignature(client.method, client.uri, oauth_params, secret);
 

@@ -24,9 +24,11 @@ tweet({text: 'hogehoge'});
 (function(Violet) {
   var Util = Violet.Util;
   var HTTPClient = Violet.HTTPClient;
-  var apiBaseURI = 'https://api.twitter.com/1.1/';
+  var restBaseURI = 'https://api.twitter.com/1.1/';
+  var uploadBaseURI = 'https://upload.twitter.com/1.1/';
 
-  var RESTRequest = function(method, endpoint, responseProc, accounts) {
+  var RESTRequest = function(method, endpoint, responseProc, multipart, accounts) {
+    var apiBaseURI = (multipart)? uploadBaseURI : restBaseURI;
     var reqThis = {callback: function(){}, errorback: function(){}};
     var reqFunction =  function(data, accountId) {
       accountId = accountId || accounts.getPrimary().accountId;
@@ -37,10 +39,11 @@ tweet({text: 'hogehoge'});
       var conn = new HTTPClient({
         method: method,
         uri: uri,
-        data: data
+        data: data,
+        multipart: multipart
       });
 
-      conn.setOAuthHeader(oauth.obtainOAuthParams(conn));
+      conn.setOAuthHeader(oauth.obtainOAuthParams(conn, multipart));
       conn.addEventListener('load', function(xhr) {
         var response = [JSON.parse(xhr.responseText)];
         if (typeof responseProc === 'function') {

@@ -11,6 +11,7 @@
     // register methods
     this._registerMethods('statuses', Violet.REST.Statuses);
     this._registerMethods('favorites', Violet.REST.Favorites);
+    this._registerMethods('media', Violet.REST.Media);
   };
 
   REST.prototype = {
@@ -24,6 +25,7 @@
             endpoint.method,
             endpoint.path,
             endpoint.responseProc,
+            endpoint.multipart || false,
             this._accounts
           );
         }

@@ -4,6 +4,7 @@
 
 (function(Violet) {
   var HTTPClient = function(args) {
+    this.multipart = args.multipart === true;
     this.method = args.method || 'GET';
     this.formatURIAndData(args.uri || '', args.data || {});
     this.xhr = new XMLHttpRequest({mozSystem: true});
@@ -22,7 +23,7 @@
         xhr.setRequestHeader('Authorization', this.authorizationHeader);
       }
 
-      if (this.method === 'POST') {
+      if (this.method === 'POST' && !this.multipart) {
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       }
 
@@ -32,21 +33,25 @@
       this.xhr.abort();
     },
     formatURIAndData: function (rawURI, rawData) {
-      var key, data = [];
-
-      for (key in rawData) {
-        if (rawData.hasOwnProperty(key)) {
-          data.push(key + '=' + Violet.Util.URIEncode(rawData[key]));
-        }
-      }
-
-      this.rawData = rawData;
-      if (this.method === 'GET') {
-        this.uri =  rawURI + ((data.length > 0) ? '?' + data.join('&') : '');
-        this.data = null;
-      } else if (this.method === 'POST') {
+      if (this.multipart) {
         this.uri = rawURI;
-        this.data = data.join('&');
+        this.data = rawData;
+      } else {
+        var key, data = [];
+        for (key in rawData) {
+          if (rawData.hasOwnProperty(key)) {
+            data.push(key + '=' + Violet.Util.URIEncode(rawData[key]));
+          }
+        }
+
+        this.rawData = rawData;
+        if (this.method === 'GET') {
+          this.uri =  rawURI + ((data.length > 0) ? '?' + data.join('&') : '');
+          this.data = null;
+        } else if (this.method === 'POST') {
+          this.uri = rawURI;
+          this.data = data.join('&');
+        }
       }
     },
     setOAuthHeader: function(OAuthParams) {
