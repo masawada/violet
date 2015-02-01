@@ -1,25 +1,6 @@
 //
-// Violet.REST.Request
+// Violet.RESTRequest
 //
-
-/*
-
-// usage
-
-var tweet = Request('GET', 'statuses/update', function(response) {
-  return new Violet.Tweet(response);
-}, accounts);
-
-tweet.on('success', function(tweetObj) {
-  console.log(tweetObj);
-});
-tweet.on('error', function(errObj) {
-  console.log(errObj);
-});
-
-tweet({text: 'hogehoge'});
-
-*/
 
 (function(Violet) {
   var Util = Violet.Util;
