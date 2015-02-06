@@ -27,13 +27,14 @@
       conn.setOAuthHeader(oauth.obtainOAuthParams(conn, multipart));
       conn.addEventListener('load', function(xhr) {
         var response = [JSON.parse(xhr.responseText)];
-        if (typeof responseProc === 'function') {
-          response = responseProc.apply(null, response);
+        if (xhr.status === 200) {
+          if (typeof responseProc === 'function') {
+            response = responseProc.apply(null, response);
+          }
+          this.callback.apply(null, response);
+        } else {
+          this.errorback.apply(null, response);
         }
-        this.callback.apply(null, response);
-      }.bind(this));
-      conn.addEventListener('error', function(xhr) {
-        this.errorback.apply(null, [accountId, JSON.parse(xhr.responseText)]);
       }.bind(this));
 
       conn.start();
