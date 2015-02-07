@@ -12,6 +12,7 @@
     this._registerMethods('statuses', Violet.REST.Statuses);
     this._registerMethods('favorites', Violet.REST.Favorites);
     this._registerMethods('media', Violet.REST.Media);
+    this._registerMethods('application', Violet.REST.Application);
   };
 
   REST.prototype = {
