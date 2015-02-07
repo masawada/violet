@@ -77,6 +77,27 @@
       responseProc: function(tweet) {
         return [new Tweet(tweet)];
       }
+    },
+    'oembed': {
+      method: 'GET',
+      path: 'statuses/oembed',
+      responseProc: function(response) {
+        return [response];
+      }
+    },
+    'retweetersIds': {
+      method: 'GET',
+      path: 'statuses/retweeters/ids',
+      responseProc: function(response) {
+        return [response];
+      }
+    },
+    'lookup': {
+      method: 'GET',
+      path: 'statuses/lookup',
+      responseProc: function(response) {
+        return [response];
+      }
     }
   };
 
