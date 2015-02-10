@@ -27,7 +27,7 @@
 
       // register attributes
       attributes.forEach(function(attribute) {
-        this[attribute] = tweet[attribute] || null;
+        this[attribute] = tweetData[attribute] || null;
       }.bind(this));
 
       this.id = tweetData.id_str;
