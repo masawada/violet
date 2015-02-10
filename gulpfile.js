@@ -15,7 +15,7 @@ var paths  = {
     'src/user.js',
     'src/streaming/streaming.js',
     'src/streaming/message_parser.js',
-    'src/streaming/events.js',
+    'src/streaming/event.js',
     'src/rest/request.js',
     'src/rest/rest.js',
     'src/rest/statuses.js',
